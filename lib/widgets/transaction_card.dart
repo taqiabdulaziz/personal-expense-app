@@ -21,7 +21,7 @@ class TransactionCard extends StatelessWidget {
                   border: Border.all(color: Colors.purple, width: 2)),
               padding: EdgeInsets.all(10),
               child: Text(
-                '\$${price.toString()}',
+                '\$${price.toStringAsFixed(2)}',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: Colors.purple),
               ),
