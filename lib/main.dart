@@ -34,7 +34,7 @@ class MyHomePage extends StatelessWidget {
           IconButton(
               icon: Icon(
                 Icons.add,
-                color: Colors.white,
+                color: Colors.purple,
               ),
               onPressed: null)
         ],
