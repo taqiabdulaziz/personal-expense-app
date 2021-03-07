@@ -4,8 +4,9 @@ import 'package:personal_expense_app/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> _transactions;
+  final Function(String) _deleteTransaction;
 
-  TransactionList(this._transactions);
+  TransactionList(this._transactions, this._deleteTransaction);
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +37,26 @@ class TransactionList extends StatelessWidget {
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
                   elevation: 3,
                   child: ListTile(
-                      leading: CircleAvatar(
-                        radius: 30,
-                        child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: FittedBox(
-                              child: Text('\$${_transactions[index].amount}')),
-                        ),
+                    leading: CircleAvatar(
+                      radius: 30,
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: FittedBox(
+                            child: Text('\$${_transactions[index].amount}')),
                       ),
-                      title: Text(_transactions[index].title,
-                          style: Theme.of(context).textTheme.headline6),
-                      subtitle: Text(DateFormat.yMMMd()
-                          .format(_transactions[index].dateTrx))),
+                    ),
+                    title: Text(_transactions[index].title,
+                        style: Theme.of(context).textTheme.headline6),
+                    subtitle: Text(DateFormat.yMMMd()
+                        .format(_transactions[index].dateTrx)),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () {
+                        return _deleteTransaction(_transactions[index].id);
+                      },
+                    ),
+                  ),
                 );
                 // return TransactionCard(
                 //   title: _transactions[index].title,
